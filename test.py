@@ -23,3 +23,4 @@ for alert in alerts:
 
 if not alerts:
     print("No alerts, please create an item and an alert to test.")
+

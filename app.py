@@ -14,3 +14,5 @@
 
 # alert = Alert("6797a4aff61d4a5680d67248625535a3", 2000)
 # alert.save_to_mongo()
+
+

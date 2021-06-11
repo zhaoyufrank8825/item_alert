@@ -1,4 +1,3 @@
-from common.database import Database
 import uuid, requests
 from bs4 import BeautifulSoup
 from typing import Dict
@@ -6,12 +5,14 @@ from typing import Dict
 
 class Item:
 
+    collection = "items"
+
     def __init__(self, url: str, tag: str, query: Dict, _id: str = None) -> None:
+        super().__init__()
         self.url = url
         self.tag = tag
         self.query = query
         self._id = _id or uuid.uuid4().hex
-        self.collection = "items"
         self.price = None
 
     def __repr__(self) -> str:
@@ -37,15 +38,3 @@ class Item:
             "query":self.query
         }
     
-    def save_to_mongo(self):
-        Database.insert(self.collection, self.json())
-
-    @classmethod
-    def all(cls):
-        items = Database.find("items", {})
-        return [cls(**item) for item in items] 
-
-    @classmethod
-    def get_by_id(cls, id):
-        item =  Database.find_one("items", {"_id":id})
-        return cls(**item)
