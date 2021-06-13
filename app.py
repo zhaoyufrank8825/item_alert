@@ -1,18 +1,14 @@
-# from flask import Flask
-# app = Flask(__name__)
+from flask import Flask
+from views.items import item_blueprint
+from views.alerts import alert_blueprint
+
+app = Flask(__name__)
 
 
-# @app.route("/")
-# def hello():
-#     return "Hello!"
+app.register_blueprint(item_blueprint, url_prefix="/items")
+app.register_blueprint(alert_blueprint, url_prefix="/alerts")
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
-# from models.alert import Alert
-
-# alert = Alert("6797a4aff61d4a5680d67248625535a3", 2000)
-# alert.save_to_mongo()
-
+if __name__ == "__main__":
+    app.run(debug=True)
 

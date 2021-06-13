@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <header><h1>Create Alert</h1></header>
+    <section class="create-alert-form">
+        <form method="POST">
+            <div class="form-group">
+                <label for="item_id">Item ID</label>
+                <input type="text" class="form-control" id="item_id" name="item_id">
+            </div>
+            <div class="form-group">
+                <label for="price_limit">Price Limit</label>
+                <input type="text" class="form-control" id="price_limit" name="price_limit" placeholder='120' aria-describedby="priceHelp">
+                <small id="priceHelp" class="form-text form-muted">
+                    What price would get notified?
+                </small>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </section>
+{% endblock %}

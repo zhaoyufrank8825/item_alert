@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<header><h1 class="mt-5">Alerts</h1></header>
+<section>
+    <div class="list-group mb-3"> 
+        {% for alert in alerts %}
+            <div class="list-group-alert">
+                <h4>Alert</h4>
+                <p>
+                    <a href="{{ alert.item.url }}">{{ alert.item_id }}</a>
+                </p>
+                <p> Price Limit: {{alert.price_limit}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('alerts.new_alert') }}" class="btn btn-primary">Create New</a>
+</section>
+{% endblock %}

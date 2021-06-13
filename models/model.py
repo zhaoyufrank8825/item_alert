@@ -1,5 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from common.database import Database
+from typing import Type, TypeVar
+
+T = TypeVar('T', bound="Model")
 
 
 class Model(metaclass=ABCMeta):
@@ -20,7 +23,7 @@ class Model(metaclass=ABCMeta):
         raise NotImplementedError
 
     @classmethod
-    def get_by_id(cls, id):
+    def get_by_id(cls: Type[T], id: str) -> T:
         return cls.find_one_by("_id", id)
 
     @classmethod

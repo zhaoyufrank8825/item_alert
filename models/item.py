@@ -1,9 +1,10 @@
+from models.model import Model
 import uuid, requests
 from bs4 import BeautifulSoup
 from typing import Dict
 
 
-class Item:
+class Item(Model):
 
     collection = "items"
 
