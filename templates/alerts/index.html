@@ -5,11 +5,18 @@
     <div class="list-group mb-3"> 
         {% for alert in alerts %}
             <div class="list-group-alert">
-                <h4>Alert</h4>
+                <h4>Alert: {{ alert.name }}</h4>
                 <p>
-                    <a href="{{ alert.item.url }}">{{ alert.item_id }}</a>
+                    <a href="{{ alert.item.url }}">{{ alert.item.url }}</a>
                 </p>
+                <p> Latest Price: {{alert.item.price}}</p>
                 <p> Price Limit: {{alert.price_limit}}</p>
+                <p>
+                    <a class="btn btn-secondary" href="{{ url_for('alerts.edit_alert', alert_id=alert._id) }}">Edit</a>
+                </p>
+                <p>
+                    <a class="btn btn-danger" href="{{ url_for('alerts.remove_alert', alert_id=alert._id) }}">Remove</a>
+                </p>
             </div>
         {% endfor %}
     </div>

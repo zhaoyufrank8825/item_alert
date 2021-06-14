@@ -2,22 +2,17 @@ from models.model import Model
 import uuid, requests
 from bs4 import BeautifulSoup
 from typing import Dict
+from dataclasses import dataclass, field
 
 
+@dataclass(eq=False)
 class Item(Model):
-
-    collection = "items"
-
-    def __init__(self, url: str, tag: str, query: Dict, _id: str = None) -> None:
-        super().__init__()
-        self.url = url
-        self.tag = tag
-        self.query = query
-        self._id = _id or uuid.uuid4().hex
-        self.price = None
-
-    def __repr__(self) -> str:
-        return f"<Item {self.url}>"
+    collection: str = field(init=False, default="items")
+    url: str
+    tag: str
+    query: Dict
+    _id: str = field(default_factory=lambda: uuid.uuid4().hex)
+    price: float = field(default=None)
 
     def load_price(self)  -> float:
         content = requests.get(self.url).content
@@ -36,6 +31,7 @@ class Item(Model):
             "_id":self._id,
             "url":self.url,
             "tag":self.tag,
-            "query":self.query
+            "query":self.query,
+            "price":self.price
         }
     

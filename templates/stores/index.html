@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<header><h1 class="mt-5">Stores</h1></header>
+<section>
+    <div class="list-group mb-3"> 
+        {% for store in stores %}
+            <div class="list-group-store">
+                <h4>Store Name: {{store.name}}</h4>
+                <p>
+                    <h5>Website: </h5>
+                    <a href="{{ store.url_prefix }}">{{ store.url_prefix }}</a>
+                </p>
+                <p>
+                    <a class="btn btn-secondary" href="{{ url_for('stores.edit_store', store_id=store._id) }}">Edit</a>
+                </p>
+                <p>
+                    <a class="btn btn-danger" href="{{ url_for('stores.remove_store', store_id=store._id) }}">Remove</a>
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('stores.new_store') }}" class="btn btn-primary">Create New Store</a>
+</section>
+{% endblock %}

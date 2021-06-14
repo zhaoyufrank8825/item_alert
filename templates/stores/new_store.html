@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-    <header><h1>Create Item</h1></header>
-    <section class="create-item-form">
+    <header><h1>Create Store</h1></header>
+    <section class="create-store-form">
         <form method="POST">
             <div class="form-group">
-                <label for="url">URL</label>
-                <input type="text" class="form-control" id="url" name="url" placeholder="http://...">
+                <label for="name">Store Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="John Lewis">
+            </div>
+            <div class="form-group">
+                <label for="url_pre">Website</label>
+                <input type="text" class="form-control" id="url_prefix" name="url_pre" placeholder="http://...">
             </div>
             <div class="form-group">
                 <label for="tag">Tag</label>
                 <input type="text" class="form-control" id="tag" name="tag" placeholder="span" aria-describedby="tagHelp">
                 <small id="tagHelp" class="form-text form-muted">
-                    What is the HTML tag that contains the item price?
+                    What is the HTML tag that contains the price?
                 </small>
             </div>
             <div class="form-group">
