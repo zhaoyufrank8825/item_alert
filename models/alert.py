@@ -1,4 +1,3 @@
-from types import LambdaType
 from models.model import Model
 from models.item import Item
 from dataclasses import dataclass, field
@@ -11,6 +10,7 @@ class Alert(Model):
     name: str
     item_id: str
     price_limit: float
+    email: str
     _id: str = field(default_factory=lambda: uuid.uuid4().hex )
 
     def __post_init__(self):
@@ -21,7 +21,8 @@ class Alert(Model):
             "item_id": self.item_id,
             "price_limit": self.price_limit,
             "_id": self._id,
-            "name": self.name
+            "name": self.name,
+            "email": self.email
         }
 
     def load_item_price(self):

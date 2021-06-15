@@ -10,15 +10,19 @@
                     <h5>Website: </h5>
                     <a href="{{ store.url_prefix }}">{{ store.url_prefix }}</a>
                 </p>
-                <p>
-                    <a class="btn btn-secondary" href="{{ url_for('stores.edit_store', store_id=store._id) }}">Edit</a>
-                </p>
-                <p>
-                    <a class="btn btn-danger" href="{{ url_for('stores.remove_store', store_id=store._id) }}">Remove</a>
-                </p>
+                {% if session['email'] == config.ADMIN %}
+                    <p>
+                        <a class="btn btn-secondary" href="{{ url_for('stores.edit_store', store_id=store._id) }}">Edit</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-danger" href="{{ url_for('stores.remove_store', store_id=store._id) }}">Remove</a>
+                    </p>
+                {% endif %}
             </div>
         {% endfor %}
     </div>
-    <a href="{{ url_for('stores.new_store') }}" class="btn btn-primary">Create New Store</a>
+    {% if session['email'] == config.ADMIN %}
+        <a href="{{ url_for('stores.new_store') }}" class="btn btn-primary">Create New Store</a>
+    {% endif %}
 </section>
 {% endblock %}
