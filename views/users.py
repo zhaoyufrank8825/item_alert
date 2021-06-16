@@ -12,12 +12,13 @@ def register():
         email = request.form['email']
         password = request.form['password']
         password2 = request.form['password2']
+        username = request.form['username']
 
         if password == password2:
             try:
-                User.register(email, password)
+                User.register(email, password, username)
                 session['email']=email
-                return email
+                return render_template("alerts/index.html")
             except UserErrors.UserError as e:
                 return e.msg
         else:
@@ -40,4 +41,9 @@ def login():
         except UserErrors.UserError as e:
             return e.msg
         
+    return render_template("users/login.html")
+
+@user_blueprint.route("/logout")
+def logout():
+    session['email'] = None
     return render_template("users/login.html")

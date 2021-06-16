@@ -3,6 +3,7 @@ from flask.templating import render_template
 from views.alerts import alert_blueprint
 from views.stores import store_blueprint
 from views.users import user_blueprint
+from views.blogs import blog_blueprint
 import os
 
 
@@ -19,7 +20,7 @@ def home():
 app.register_blueprint(alert_blueprint, url_prefix="/alerts")
 app.register_blueprint(store_blueprint, url_prefix="/stores")
 app.register_blueprint(user_blueprint, url_prefix="/users")
-
+app.register_blueprint(blog_blueprint, url_prefix="/blogs")
 
 if __name__ == "__main__":
     app.run(debug=True)
