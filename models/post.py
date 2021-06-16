@@ -26,9 +26,8 @@ class Post(Model):
 
     @classmethod
     def from_mongo(cls, id):
-        post = cls.find_one_by('_id', id)
-        return cls(**post)
+        return cls.find_one_by('_id', id)
 
     @classmethod
     def from_blog(cls, id):
-        return [ post for post in cls.find_many_by("blog_id", id)]
+        return cls.find_many_by("blog_id", id)

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <header><h1 class="mt-5">Stores</h1></header>
+<hr>
 <section>
     <div class="list-group mb-3"> 
         {% for store in stores %}
@@ -18,10 +19,14 @@
                         <a class="btn btn-danger" href="{{ url_for('stores.remove_store', store_id=store._id) }}">Remove</a>
                     </p>
                 {% endif %}
+                <hr>
             </div>
+            
         {% endfor %}
     </div>
+
     {% if session['email'] == config.ADMIN %}
+        <hr>
         <a href="{{ url_for('stores.new_store') }}" class="btn btn-primary">Create New Store</a>
     {% endif %}
 </section>

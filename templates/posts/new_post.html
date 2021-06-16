@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-    <form id="post_form" action="/{{ blog_id }}/posts/new_post" method='POST'>
+    <form id="post_form" method='POST'>
         <h1 class="h1_head">New Post</h1>
         <br>
         <div class="form-group">
@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea id="content" name="content" class="form-control"></textarea>
+            <textarea id="content" name="content" class="form-control" rows="6"></textarea>
         </div>
         <button type="submit" class="btn btn-success" id="submit-btn" >Create</button>
     </form>

@@ -46,4 +46,4 @@ def login():
 @user_blueprint.route("/logout")
 def logout():
     session['email'] = None
-    return render_template("users/login.html")
+    return redirect(url_for(".login"))
