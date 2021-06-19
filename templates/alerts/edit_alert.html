@@ -17,11 +17,11 @@
             </div>
             <div class="form-group">
                 <label for="img">Item Image URL</label>
-                <input type="text" class="form-control" id="img" name="img" value="{{ alert.img }}">
+                <input type="text" class="form-control" id="img" name="img" value="{{ alert.img }}" required>
             </div>
             <div class="form-group">
                 <label for="price_limit">Price Limit</label>
-                <input type="text" class="form-control" id="price_limit" name="price_limit" value="{{alert.price_limit}}" aria-describedby="priceHelp">
+                <input type="text" class="form-control" id="price_limit" name="price_limit" value="{{alert.price_limit}}" aria-describedby="priceHelp" required>
                 <small id="priceHelp" class="form-text form-muted">
                     What price would get notified?
                 </small>

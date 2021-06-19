@@ -14,7 +14,7 @@ def index():
     for user in users:
         user_blogs = user.get_blogs()
         blogs.extend(user_blogs)
-    return render_template("blogs/index.html", blogs=blogs, user=user)
+    return render_template("blogs/index.html", blogs=blogs, users=users)
 
 @blog_blueprint.route("/new_blog", methods=["GET", "POST"])
 @require_login
@@ -35,7 +35,6 @@ def new_blog():
 def edit_blog(blog_id):
     blog = Blog.get_by_id(blog_id)
     if request.method == 'POST':
-        blog.title = request.form['title']
         blog.description = request.form['description']
         blog.img = request.form['img']
         blog.save_to_mongo()
@@ -75,7 +74,6 @@ def new_post(blog_id):
 def edit_post(blog_id, post_id):
     post = Post.get_by_id(post_id)
     if request.method == 'POST':
-        post.title = request.form['title']
         post.content = request.form['content']
         post.img = request.form['img']
         post.save_to_mongo()

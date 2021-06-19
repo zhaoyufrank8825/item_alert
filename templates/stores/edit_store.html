@@ -9,15 +9,15 @@
             </div>
             <div class="form-group">
                 <label for="url_pre">Store Website</label>
-                <input type="text" class="form-control" id="url_prefix" name="url_pre" value="{{ store.url_prefix}}" disabled>
+                <input type="text" class="form-control" id="url_prefix" name="url_pre" value="{{ store.url_prefix}}">
             </div>
             <div class="form-group">
                 <label for="img">Store Image URL</label>
-                <input type="text" class="form-control" id="img" name="img" value="{{ alert.img }}">
+                <input type="text" class="form-control" id="img" name="img" value="{{ store.img }}">
             </div>
             <div class="form-group">
                 <label for="description">Company Description</label>
-                <textarea id="description" name="description" class="form-control" rows="6"></textarea>
+                <textarea id="description" name="description" class="form-control" rows="6">{{ store.description }}</textarea>
             </div>
             <div class="form-group">
                 <label for="tag">Tag</label>

@@ -19,7 +19,12 @@
                 </a>
                 <p>{{ blog.author }}</p>
                 <p>{{ blog.description[:100]}} ... </p>
-                
+                {% if session['email'] == blog.email %}
+                <p>
+                    <a class="btn btn-secondary" href="{{ url_for('blogs.edit_blog', blog_id=blog._id) }}">Edit</a>
+                    <a class="btn btn-danger" href="{{ url_for('blogs.remove_blog', blog_id=blog._id) }}">Remove</a>
+                </p>
+                {% endif %}
                 </div>
             </div>
         </div>
