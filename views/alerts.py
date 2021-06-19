@@ -19,6 +19,7 @@ def new_alert():
     if request.method == 'POST':
         item_url = request.form['item_url']
         name = request.form['name']
+        img = request.form['img']
         price_limit = float(request.form['price_limit'])
 
         store = Store.find_by_url(item_url)
@@ -26,7 +27,8 @@ def new_alert():
         item.load_price()
         item.save_to_mongo()
 
-        Alert(name, item._id, price_limit, session['email']).save_to_mongo()
+        Alert(name, item._id, price_limit, session['email'], img).save_to_mongo()
+        return redirect(url_for(".index")) 
     return render_template("alerts/new_alert.html")
 
 @alert_blueprint.route("/edit/<string:alert_id>", methods=['GET', 'POST'])
@@ -35,6 +37,7 @@ def edit_alert(alert_id):
     alert = Alert.get_by_id(alert_id)
     if request.method == 'POST':
         alert.price_limit = float(request.form['price_limit'])
+        alert.img = request.form['img']
         alert.save_to_mongo()
         return redirect(url_for(".index"))
 

@@ -1,0 +1,2 @@
+{ "_id" : "123", "url_prefix" : "https://www.johnlewis.com/", "name" : "John Lewis", "tag" : "p", "query" : { "class" : "price price--large" } }
+{ "_id" : "4ca0e554360641bea40d6bb82b9283fa", "url_prefix" : "https://www.amazon.com", "name" : "Amazon", "tag" : "span", "query" : { "id" : "id" } }

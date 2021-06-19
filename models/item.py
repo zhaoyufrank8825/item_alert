@@ -15,8 +15,10 @@ class Item(Model):
     price: float = field(default=None)
 
     def load_price(self)  -> float:
+        # request = requests.get(self.url, headers = {'User-Agent': 'Mozilla/5.0'})
         content = requests.get(self.url).content
-        element = BeautifulSoup(content, "html.parser").find(self.tag, self.query)
+        soup = BeautifulSoup(content, "html.parser")
+        element = soup.find(self.tag, self.query)
         str_price = element.text.strip()
 
         # pattern = re.compile(r"(\d+,?\d+\.\d\d)")

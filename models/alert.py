@@ -11,6 +11,7 @@ class Alert(Model):
     item_id: str
     price_limit: float
     email: str
+    img: str
     _id: str = field(default_factory=lambda: uuid.uuid4().hex )
 
     def __post_init__(self):
@@ -22,7 +23,8 @@ class Alert(Model):
             "price_limit": self.price_limit,
             "_id": self._id,
             "name": self.name,
-            "email": self.email
+            "email": self.email,
+            "img": self.img
         }
 
     def load_item_price(self):

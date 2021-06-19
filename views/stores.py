@@ -21,8 +21,12 @@ def new_store():
         name = request.form['name']
         tag = request.form['tag']
         query = json.loads(request.form['query'])
+        img = request.form['img']
+        description = request.form['description']
 
-        Store(url_prefix, name, tag, query).save_to_mongo()
+        Store(url_prefix, name, tag, query, img, description).save_to_mongo()
+        return redirect(url_for(".index"))
+
     return render_template("stores/new_store.html")
 
 @store_blueprint.route("/edit/<string:store_id>", methods=['GET', 'POST'])
@@ -33,6 +37,8 @@ def edit_store(store_id):
         store.url_prefix = request.form['url_pre']
         store.tag = request.form['tag']
         store.query = json.loads(request.form['query'])
+        store.img = request.form['img']
+        store.description = request.form['description']
 
         store.save_to_mongo()
         return redirect(url_for(".index"))
@@ -45,3 +51,8 @@ def remove_store(store_id):
     store.remove_from_mongo()
     return redirect(url_for(".index"))
 
+
+@store_blueprint.route("/show/<string:store_id>")
+def show(store_id):
+    store = Store.get_by_id(store_id)
+    return render_template("stores/show.html", store=store)

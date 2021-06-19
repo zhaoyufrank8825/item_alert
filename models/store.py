@@ -11,6 +11,8 @@ class Store(Model):
     name: str
     tag: str
     query: Dict
+    img: str
+    description: str
     _id: str = field(default_factory=lambda: uuid.uuid4().hex)
     
     def json(self):
@@ -19,7 +21,9 @@ class Store(Model):
             "name": self.name,
             "tag": self.tag,
             "query": self.query,
-            "_id": self._id
+            "_id": self._id,
+            "img": self.img,
+            "description": self.description
         }
 
     @classmethod
