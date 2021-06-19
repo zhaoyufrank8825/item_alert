@@ -12,6 +12,7 @@ class Blog(Model):
     author_id: str
     title: float
     description: str
+    img: str
     _id: str = field(default_factory=lambda: uuid.uuid4().hex )
     
     def new_post(self, title, content):
@@ -19,6 +20,7 @@ class Blog(Model):
                     title=title, 
                     content=content, 
                     author=self.author, 
+                    img=self.img,
                     date=datetime.datetime.utcnow())
         post.save_to_mongo()
 
@@ -32,7 +34,8 @@ class Blog(Model):
             "description": self.description,
             "author_id": self.author_id,
             "_id": self._id,
-            "email": self.email
+            "email": self.email,
+            "img": self.img
         }
     
     @classmethod
@@ -42,3 +45,6 @@ class Blog(Model):
     @classmethod
     def find_by_author_id(cls, id):
         return cls.find_many_by("author_id", id)
+
+    
+

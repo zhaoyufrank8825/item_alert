@@ -10,6 +10,7 @@ class Post(Model):
     title: str
     content: str
     author: str
+    img: str
     date: str = field(default_factory=lambda: datetime.datetime.utcnow() )
     _id: str = field(default_factory=lambda: uuid.uuid4().hex )
 
@@ -21,7 +22,8 @@ class Post(Model):
             "title": self.title,
             "author": self.author,
             "content": self.content,
-            "date": self.date
+            "date": self.date,
+            "img": self.img
         }
 
     @classmethod

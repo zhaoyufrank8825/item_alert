@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" >
+    <div class="captial-full my-4">
+        <h3>
+            <span class="card-title">{{ post.title }}</span>
+            {% if session['email'] == blog.email %}
+              <a class="float-right mx-3 btn btn-danger" href="{{ url_for('blogs.remove_blog', blog_id=blog._id) }}">Remove</a>
+              <a class="float-right mx-3 btn btn-secondary" href="{{ url_for('blogs.edit_blog', blog_id=blog._id) }}">Edit</a>
+            {% endif %}
+        </h3>
+        <hr>
+        <p class="card-text">{{ post.content }}</p>
+      </div>
+    
+    <img class="card-img-top img-float" src="{{ post.img }}">
+</div>   
+  {% endblock %}

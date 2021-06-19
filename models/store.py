@@ -32,8 +32,8 @@ class Store(Model):
 
     @classmethod
     def get_by_url_prefix(cls, url_prefix):
-        url_re = {"$regex": "^{}".format(url_prefix)}
-        return cls.find_one_by("url_prefix", url_re)
+        url_pre = {"$regex": "^{}".format(url_prefix)}
+        return cls.find_one_by("url_prefix", url_pre)
 
     @classmethod
     def find_by_url(cls, url):

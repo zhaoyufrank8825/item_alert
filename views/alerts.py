@@ -2,16 +2,23 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from models.alert import Alert
 from models.store import Store
 from models.item import Item
-from models.user import require_login
+from models.user import require_login, User
 
 alert_blueprint = Blueprint("alerts", __name__)
 
 
 @alert_blueprint.route("/")
-@require_login
 def index():
-    alerts = Alert.find_many_by("email", session['email'])
+    users = User.all()
+    alerts = []
+    for user in users:
+        user_alerts = Alert.find_many_by("email", user.email)
+        alerts.extend(user_alerts)
     return render_template("alerts/index.html", alerts = alerts)
+
+# def index():
+#     alerts = Alert.find_many_by("email", session['email'])
+#     return render_template("alerts/index.html", alerts = alerts)
 
 @alert_blueprint.route("/new", methods=['GET', 'POST'])
 @require_login

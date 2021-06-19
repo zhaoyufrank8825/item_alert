@@ -1,19 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <h1 class="h1_head">{{ user.email }}'s Blogs</h1>
+<div>
+    <h1 class="my-4">Blogs: Create a beautiful life.
+        <a class="float-right btn btn-primary" href="/blogs/new_blog" >Create New Blog</a>
+    </h1>
     <hr>
-    <a class="btn btn-primary" href="/blogs/new_blog" >Create New Blogs</a>
-    <hr>
-    {% for blog in blogs %}
-        <h3><a href="/blogs/{{ blog._id }}/posts" >{{ blog.title }}</a></h3>
-        <p>{{ blog.description }}</p>
-        <p>{{ blog.author }}</p>
-        <p>
-            <a class="btn btn-secondary" href="{{ url_for('blogs.edit_blog', blog_id=blog._id) }}">Edit</a>
-            <a class="btn btn-danger" href="{{ url_for('blogs.remove_blog', blog_id=blog._id) }}">Remove</a>
-        </p>
-        <hr>
-    {% endfor %}
+
+    <div class="row mb-3 d-flex align-items-stretch" style="display:flex; flex-wrap:wrap;">
+        {% for blog in blogs %}
+        <div class="col col-md-4 d-flex align-items-stretch">
+            <div class="card">
+                <a href="/blogs/{{ blog._id }}/posts"> 
+                    <img class="card-img-top" src="{{ blog.img }}">
+                </a>
+                <div class="card-body">
+                <a href="/blogs/{{ blog._id }}/posts">    
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                </a>
+                <p>{{ blog.author }}</p>
+                <p>{{ blog.description[:100]}} ... </p>
+                
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

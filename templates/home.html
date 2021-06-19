@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="jumbotron">
-        <h1 class="display-4">Items Alert</h1>
-        <p class="lead">We scan online store websites to alert you of price drops in items that interest you.</p>
+        <h1 class="display-4">Alerts & Blogs</h1>
+        <p class="lead"><a href="{{ url_for('blogs.index')}}">
+            Blogs: Creating the blog for your interest area, and showing your passion and strength.
+        </a></p>
         <hr class="my-4">
-        <p>Just sign up, and get started by adding the URL of an item that you wish to track. We'll do the rest!</p>
-        <a class="btn btn-primary btn-lg" href="{{ url_for('users.register')}}">Get Started</a>
+        
+        <p><a href="{{ url_for('users.register')}}">Alerts: We scan online store websites to alert you of price drops in items that interest you. 
+            Just sign up, and get started by adding the URL of an item that you wish to track. 
+            We'll do the rest!</a></p>
+        <p id="btns">
+            <a class="btn btn-success btn-lg" href="{{ url_for('blogs.index')}}">View Blogs</a>
+            <a class="float-right btn btn-success btn-lg" href="{{ url_for('users.register')}}">Sign Up</a>
+        </p>
     </div>
 {% endblock %}

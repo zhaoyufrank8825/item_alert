@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<header><h1 class="mt-5">Alerts</h1></header>
-<hr>
-<a href="{{ url_for('alerts.new_alert') }}" class="btn btn-primary">Create New Alert</a>
+<header><h1 class="mt-5">Alerts: update latest price automatically
+    <a href="{{ url_for('alerts.new_alert') }}" class="float-right btn btn-lg btn-primary">Create New Alert</a>
+</h1></header>
+
 <hr>
 <section>
 
@@ -18,10 +19,12 @@
             </a>
             <p class="card-text">Latest Price: {{alert.item.price}}</p>
             <p class="card-text">Price Limit: {{alert.price_limit}}</p>
+            {% if session['email'] == alert.email %}
             <p>
                 <a class="btn btn-secondary" href="{{ url_for('alerts.edit_alert', alert_id=alert._id) }}">Edit</a>
                 <a class="btn btn-danger" href="{{ url_for('alerts.remove_alert', alert_id=alert._id) }}">Remove</a>
             </p>
+            {% endif %}
             </div>
         </div>
     </div>

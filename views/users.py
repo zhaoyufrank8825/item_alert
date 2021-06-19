@@ -37,7 +37,7 @@ def login():
         try:
             if User.is_login_valid(email, password):
                 session['email']=email
-                return redirect(url_for("stores.index"))
+                return redirect(url_for("blogs.index"))
         except UserErrors.UserError as e:
             return e.msg
         

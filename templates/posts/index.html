@@ -1,20 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <h1 class="h1_head">{{ blog.author }}'s Posts</h1>
-    <hr>
-    <a href="/blogs/{{ blog._id }}/posts/new_post"><button type="input" class="btn btn-success">New Post</button></a>
+<div>
+    <div class="jumbotron pt-4">
+        <h2> {{ blog.author }}'s {{ blog.title }}</h2>
+        <hr class="my-3">
+        <p>{{ blog.description[:400] }} ... </p>
+        <a class="float-right btn btn-primary" href="/blogs/{{ blog._id }}/posts/new_post">New Post</a>
+    </div>
+
     <hr>
     {% if posts|length >0 %}
         {% for post in posts %}
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.content }}</p>
-            <p>{{ post.author }}</p>
-            <p>
-                <a class="btn btn-secondary" href="{{ url_for('blogs.edit_post', blog_id=blog._id, post_id=post._id) }}">Edit</a>
-                <a class="btn btn-danger" href="{{ url_for('blogs.remove_post', blog_id=blog._id, post_id=post._id) }}">Remove</a>
-            </p>
-            <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{{ url_for('blogs.show_post', blog_id=blog._id, post_id=post._id)}}">
+                    <img  style="height: 300px; width: 350px" src="{{ post.img }}">
+                </a>
+            </div>
+            <div class="col-md-8">
+                <a href="{{ url_for('blogs.show_post', blog_id=blog._id, post_id=post._id)}}"><h3>{{ post.title }}</h3></a>
+                <p>{{ post.content }}</p>
+                <h4>Author: {{ post.author }}</h4>
+                {% if session['email'] == blog.email %}
+                <p>
+                    <a class="btn btn-secondary" href="{{ url_for('blogs.edit_post', blog_id=blog._id, post_id=post._id) }}">Edit</a>
+                    <a class="btn btn-danger" href="{{ url_for('blogs.remove_post', blog_id=blog._id, post_id=post._id) }}">Remove</a>
+                </p>
+                {% endif %}
+            </div>
+            
+        </div>
+        <hr>
         {% endfor %}
     {% else %}
         <h3>There are not any posts yet.</h3>
