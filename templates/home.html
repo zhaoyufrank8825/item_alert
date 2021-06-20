@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="jumbotron">
-        <h1 class="display-4">Alerts & Blogs</h1>
+    <div class="jumbotron" style='background-image: url("https://steamuserimages-a.akamaihd.net/ugc/869615759255683479/689D26333F2D2A318A5D6BC7FA7FAC3A30535195/");'>
+        <h1 class="display-4" style="color: white;">Alerts & Blogs</h1>
         <p class="lead"><a href="{{ url_for('blogs.index')}}">
             Blogs: Creating the blog for your interest area, and showing your passion and strength.
         </a></p>
-        <hr class="my-4">
+        
+        <hr class="my-4" style="height:1px;border:none;color:white;background-color:white;">
         
         <p><a href="{{ url_for('users.register')}}">Alerts: We scan online store websites to alert you of price drops in items that interest you. 
             Just sign up, and get started by adding the URL of an item that you wish to track. 

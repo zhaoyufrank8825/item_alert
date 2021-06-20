@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-    <div class="jumbotron pt-4">
+    <div class="jumbotron pt-4" style='color:grey; background-image: url("https://steamuserimages-a.akamaihd.net/ugc/869615759255683479/689D26333F2D2A318A5D6BC7FA7FAC3A30535195/");'>
         <h2> {{ blog.author }}'s {{ blog.title }}</h2>
         <hr class="my-3">
         <p>{{ blog.description[:400] }} ... </p>
         <a class="float-right btn btn-primary" href="/blogs/{{ blog._id }}/posts/new_post">New Post</a>
     </div>
 
-    <hr>
+    <hr style="height:5px;border:none;color:#333;background-color:#333;">
     {% if posts|length >0 %}
         {% for post in posts %}
         <div class="row">
@@ -30,7 +30,7 @@
             </div>
             
         </div>
-        <hr>
+        <hr style="height:5px;border:none;color:#333;background-color:#333;">
         {% endfor %}
     {% else %}
         <h3>There are not any posts yet.</h3>
